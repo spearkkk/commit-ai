@@ -1,0 +1,29 @@
+name: AI
+
+on:
+  schedule:
+    - cron: '3 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  do-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Repository Name
+        run: echo "${{ github.repository }}"
+
+      - name: Where I Am
+        uses: actions/checkout@v3
+        with:
+          path: commits
+
+      - name: Commit
+        run: |
+          cd commits
+          date >> date.txt
+          git add .
+          git config --global user.email "spearkkk@github.com"
+          git config --global user.name "spearkkk"
+          git commit -am "Commit automatically"
+          git push
+
