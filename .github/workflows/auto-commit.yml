@@ -19,6 +19,8 @@ jobs:
 
       - name: Commit
         run: |
+          pwd
+          cd commits
           date +%Y-%m-%dT%H:%M:%S\n >> footprint.md
           git add .
           git config --global user.name 'spearkkk'
