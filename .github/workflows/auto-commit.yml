@@ -1,28 +1,27 @@
-name: GRASSHOPPERS
-on: 
+name: AI
+
+on:
   schedule:
-    - cron:  '3 1 * * *'
+    - cron: '3 1 * * *'
   workflow_dispatch:
-    
-defaults:
-  run:
-    shell: bash
-    working-directory: ./grass
-    
+
 jobs:
-  hoppers-hop:
+  do-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: grass
+      - name: Say Repository Name
+        run: echo "${{ github.repository }}"
+
+      - name: Where I Am
+        uses: actions/checkout@v3
+        with:
+          path: commits
+
+      - name: Commit
         run: |
-          sed -i 's/.\{4\}╮$//g' grass.txt
-          hopping_count=$(wc -l grass.txt | awk '{ print $1 }') ;
-          printf "━%.0s" $(eval echo "{1..$hopping_count}") >> grass.txt ;
-          printf "━🌱" >> grass.txt ;
-      - name: auto commit
-        run: |
-          git config --global user.name 'spearkkk'
-          git config --global user.email 'spearkkp@gmail.com'
+          cd commits
+          date >> footprint.md
+          git add .
+          git config --global user.email "spearkkp@gmail.com"
+          git config --global user.name "spearkkk"
           git commit -am "Commit automatically"
-          git push
