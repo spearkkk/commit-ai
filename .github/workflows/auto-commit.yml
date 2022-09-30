@@ -19,6 +19,7 @@ jobs:
 
       - name: Commit
         run: |
+          cd commits
           echo ${pwd}
           date >> footprint.md
           git add .
