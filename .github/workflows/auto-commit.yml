@@ -21,7 +21,7 @@ jobs:
         run: |
           pwd
           cd commits
-          date +%Y-%m-%dT%H:%M:%S\n >> footprint.md
+          date +%Y-%m-%dT%H:%M:%S\\n >> footprint.md
           git add .
           git config --global user.name 'spearkkk'
           git config --global user.email 'spearkkp@gmail.com'
