@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Say Repository Name
         run: echo "${{ github.repository }}"
+      
+      - name: Where I Am
+        uses: actions/checkout@v3
 
       - name: Commit
         run: |
