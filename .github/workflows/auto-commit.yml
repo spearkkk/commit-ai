@@ -1,29 +1,32 @@
-name: AI
-
-on:
+name: GRASSHOPPERS
+on: 
   schedule:
-    - cron: '3 1 * * *'
+    - cron:  '3 1 * * *'
   workflow_dispatch:
-
+    
+defaults:
+  run:
+    shell: bash
+    working-directory: ./grass
+    
 jobs:
-  do-commit:
+  hoppers-hop:
     runs-on: ubuntu-latest
     steps:
-      - name: Say Repository Name
-        run: echo "${{ github.repository }}"
-      
-      - name: Where I Am
-        uses: actions/checkout@v3
-        with:
-          path: commits
-
-      - name: Commit
+      - uses: actions/checkout@v2
+      - name: a frog now starts hopping
         run: |
-          cd commits
-          date >> footprint.md
-          git add .
-          git config --global user.email "spearkkk@github.com"
-          git config --global user.name "spearkkk"
-          git commit -am "Commit automatically"
+          sed -i 's/.\{4\}╮$//g' grass.txt
+          hopping_count=$(wc -l grass.txt | awk '{ print $1 }') ;
+          printf "━%.0s" $(eval echo "{1..$hopping_count}") >> grass.txt ;
+          printf "⌒🐸" >> grass.txt ;
+      - name: a grasshopper meets a new friend
+        run: |
+          printf "🦗⌒━ ╮\n" >> grass.txt ;
+          cat grass.txt ;
+      - name: two friends hop, hop, hop.
+        run: |
+          git config --global user.name 'spearkkk'
+          git config --global user.email 'spearkkp@gmail.com'
+          git commit -am "Hop, hop, hop."
           git push
-
