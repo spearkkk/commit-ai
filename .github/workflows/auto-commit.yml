@@ -20,7 +20,7 @@ jobs:
       - name: Commit
         run: |
           cd commits
-          date >> date.txt
+          date >> footprint.md
           git add .
           git config --global user.email "spearkkk@github.com"
           git config --global user.name "spearkkk"
